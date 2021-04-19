@@ -1,0 +1,43 @@
+%% The SpaceDyn %%
+%% List of Functions 
+%% for version 1.2, as of July 20, 2006.
+%%
+%% by H.Nakanishi 
+
+aw.m:	function Aw =  aw( w0 )
+calc_aa.m:	function AA = calc_aa( A0 , q )
+calc_acc.m:	function [ vd , wd ] = calc_acc( A0, AA, w0, ww, vd0, wd0, q, qd, qdd )
+calc_gj.m:	function GJ = calc_gj( R0, RR, A0, AA, q, num_e ) 
+calc_hh.m:	function HH = calc_hh( R0, RR, A0, AA ) 
+calc_je.m:	function Jacobian = calc_je( RR, AA, q, joints )
+calc_jr.m:	function JJ_r = calc_jr( AA )
+calc_jre.m:	function JJ_re = calc_jre( AA, joints )
+calc_jt.m:	function JJ_t = calc_jt( RR, AA )
+calc_jte.m:	function JJ_te = calc_jte( RR, AA, q, joints )
+calc_pos.m:	function RR = calc_pos( R0, A0, AA, q )
+calc_vel.m:	function [ vv,ww ] = calc_vel( A0, AA, v0, w0, q, qd ) 
+cross.m:	function n = cross(u, v)
+cx.m:	function Cx = cx(theta)
+cy.m:	function Cy = cy(theta)
+cz.m:	function Cz = cz(theta)
+dc2eul.m:	function euler = dc2eul( dc )
+dc2qtn.m:       function qtn = dc2qtn( dc )
+dc2rpy.m:	function rpy = dc2rpy( dc )
+eul2dc.m:	function dc = eul2dc( euler ), dc = eul2dc( phi, theta, psi )
+f_dyn.m:	function [ vd0, wd0, qdd ] = f_dyn(R0, A0, v0, w0, q, qd, F0, T0, Fe, Te, tau)
+f_dyn_nb.m:	function [ R0, A0, v0, w0, q, qd ] = f_dyn_nb( R0, A0, v0, w0, q, qd, F0, T0, Fe, Te, tau )
+f_dyn_nb2.m:	function [ R0, A0, v0, w0, q, qd ] = f_dyn_nb2( R0, A0, v0, w0, q, qd, F0, T0, Fe, Te, tau ) 
+f_dyn_rk.m:	function [ R0, A0, v0, w0, q, qd ] = f_dyn_rk( R0, A0, v0, w0, q, qd, F0, T0, Fe, Te, tau ) 
+f_dyn_rk2.m:	function [ R0, A0, v0, w0, q, qd ] = f_dyn_rk2( R0, A0, v0, w0, q, qd, F0, T0, Fe, Te, tau ) 
+f_kin_e.m:	function [ POS_e, ORI_e ] = f_kin_e( RR, AA, joints ) 
+f_kin_j.m:	function [ POS_j, ORI_j ] = f_kin_j( RR, AA, q, joints ) 
+i_kine.m:	function q_sol = i_kine( R0, A0, POS_e, ORI_e, q_init, num_e ) 
+int_eu.m:	function [ R0, A0, v0, w0, q, qd ] = int_eu( R0, A0, v0, w0, vd0, wd0, q, qd, qdd )
+int_eu2.m:	function [ R0, A0, v0, w0, q, qd ] = int_eu2( R0, A0, v0, w0, vd0, wd0, q, qd, qdd )
+j_num.m:	function joint = j_num(num_e)
+r_ne.m:		function Force = r_ne( R0, RR, A0, AA, v0, w0, vd0, wd0, q, qd, qdd, Fe, Te ) 
+rpy2dc.m:	function dc = rpy2dc( rpy )
+tilde.m:	function B = tilde( vector )
+tr2diff.m:	function diff = tr2diff( TR1, TR2 )
+
+%%%%

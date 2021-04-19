@@ -1,0 +1,7 @@
+TeleRobot_experiment_1为用普通雅克比的键盘控制程序
+
+TeleRobot_experiment_2为用扩展雅克比的键盘控制程序
+
+TeleRobot_experiment_3为用普通雅克比的自动实验程序
+
+TeleRobot_experiment_4为用扩展雅克比的自动实验程序
