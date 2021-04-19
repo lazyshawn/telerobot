@@ -1,7 +1,7 @@
 function TeleRobot
 close all
-addpath('./spacedyn_v1r2');   %the path of  SpaceDyn
-stlfilePath='./stl';          %the path holding the stl files of the robots
+addpath('./spacedyn_v1r2');   % The path of SpaceDyn
+stlfilePath='./stl';          % The path holding the stl files of the robots
 
 global Qi J_type BB SS SE S0
 global cc c0 ce
@@ -36,9 +36,9 @@ msg3 = rosmessage(positon3);
 
    
 m0 = 500; % mass of the base satellite
-          %�޸�Ϊ��ĿҪ���500
+
 inertia0 = [ 41.67 0 0; % inertia of the base satellite with respect to the base frame
-             0 41.67 0;  %�Ķ�ת������ i=m*s*s/6
+             0 41.67 0; % 改转动惯量为 i=m*s*s/6
              0 0 41.67]*1;
          
 m = [ 50 25 25 ]; % mass of each link
@@ -142,12 +142,10 @@ set(fig,'WindowKeyPressFcn',@KeyPress,'WindowKeyReleaseFcn', @KeyRelease);
          fig.UserData.e = false;
          fig.UserData.d = false;
          
-         %cwl
          fig.UserData.r = false;
          fig.UserData.f = false;
          fig.UserData.t = false;
          fig.UserData.g = false;
-         %cwl
          
          previous_key_counter=0;
          key_counter_first=0; 
@@ -184,7 +182,7 @@ while(ishandle(fig))
       input_flag=1;
    end
    
-   %cwl  ����Ƕȱ仯
+   % 读入角度变化
    if fig.UserData.r
       Jacobian = calc_je( RR, AA, q, joints );
       Jacobian = Jacobian(1:3,:);
@@ -225,7 +223,6 @@ while(ishandle(fig))
       desired_qi_buff(3)=desired_qi_buff(3)+dc(3)*pi/180;
       input_flag=1;
    end
-   %cwl
    
    if(command_buff_end>0)
       if(command_buff(1,4)==0) % It needs to push the command outof the buffer
@@ -338,7 +335,6 @@ function KeyPress(varargin)
          fig.UserData.e = true;
      elseif strcmp(key,'d')
          fig.UserData.d = true;
-     %cwl
      elseif strcmp(key,'r')
          fig.UserData.r = true;
      elseif strcmp(key,'f')
@@ -347,7 +343,6 @@ function KeyPress(varargin)
          fig.UserData.t = true;
      elseif strcmp(key,'g')
          fig.UserData.g = true;
-     %cwl
      end
 end
 
@@ -367,7 +362,6 @@ function KeyRelease(varargin)
          fig.UserData.e = false;
      elseif strcmp(key,'d')
          fig.UserData.d = false;
-     %cwl
      elseif strcmp(key,'r')
          fig.UserData.r = false;
      elseif strcmp(key,'f')
@@ -376,6 +370,5 @@ function KeyRelease(varargin)
          fig.UserData.t = false;
      elseif strcmp(key,'g')
          fig.UserData.g = false;
-     %cwl
      end
 end

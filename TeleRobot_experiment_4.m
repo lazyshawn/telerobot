@@ -35,9 +35,8 @@ msg2 = rosmessage(positon2);
 msg3 = rosmessage(positon3);   
 
 m0 = 500; % mass of the base satellite
-          %�޸�Ϊ��ĿҪ���500
 inertia0 = [ 41.67 0 0; % inertia of the base satellite with respect to the base frame
-             0 41.67 0;  %�Ķ�ת������ i=m*s*s/6
+             0 41.67 0; % 修改转动惯量 i=m*s*s/6
              0 0 41.67]*1;
          
 m = [ 50 25 25 ]; % mass of each link
@@ -99,13 +98,11 @@ num_q = length( q );
 num_e = 1;
 joints = j_num(num_e);
 
-%cwl 2018.5.25
 AA = calc_aa( A0, q );
 RR = calc_pos( R0, A0, AA, q );
 [ POS_e, ORI_e ] = f_kin_e( RR, AA, joints );
-%�趨Ŀ���
+% 设定目标点位置
 desired_pos=[2.5,-0.5];
-%cwl
 
 %%% File open
 fidw = fopen('sample.dat','w');
@@ -150,12 +147,10 @@ set(fig,'WindowKeyPressFcn',@KeyPress,'WindowKeyReleaseFcn', @KeyRelease);
          fig.UserData.e = false;
          fig.UserData.d = false;
          
-         %cwl
          fig.UserData.r = false;
          fig.UserData.f = false;
          fig.UserData.t = false;
          fig.UserData.g = false;
-         %cwl
          
          previous_key_counter=0;
          key_counter_first=0; 
@@ -192,7 +187,7 @@ while(ishandle(fig))
       input_flag=1;
    end
    
-   %cwl  ���̿���ĩ�˵㲿��
+   % 键盘控制末端点部分
    if fig.UserData.r
       Jacobian = calc_gj( R0, RR, A0, AA, q, num_e );
       Jacobian = Jacobian(1:3,:);
@@ -233,7 +228,7 @@ while(ishandle(fig))
       desired_qi_buff(3)=desired_qi_buff(3)+dc(3)*pi/180;
       input_flag=1;
    end
-   %cwl �Զ�ʵ�鲿��
+   % 自动实验部分
    if ~(abs(POS_e(1)-desired_pos(1))<0.05)%&&(abs(POS_e(2)-desired_pos(2))<0.05))
       dif(1)=desired_pos(1)-POS_e(1);
       dif(2)=desired_pos(2)-POS_e(2);
@@ -268,7 +263,7 @@ while(ishandle(fig))
       %fprintf("dif:(%f,%f)",move_direction(1),move_direction(2));
       %fprintf("dy:%d",5*move_direction(2));
    end
-   %cwl ����ܼ���ʱ
+   % 输出总计用时
    if (abs(POS_e(1)-desired_pos(1))<0.05)&&(abs(POS_e(2)-desired_pos(2))<0.05)
        fprintf('Time used:%f',time);
        break;
@@ -341,7 +336,7 @@ while(ishandle(fig))
     RR = calc_pos( R0, A0, AA, q );
     [ POS_e, ORI_e ] = f_kin_e( RR, AA, joints );
 
-    %���ĩ������
+    % 输出末端坐标
     %fprintf("end point:(%f,%f)\n",POS_e(1),POS_e(2));
     %
     
@@ -464,7 +459,6 @@ function KeyPress(varargin)
          fig.UserData.e = true;
      elseif strcmp(key,'d')
          fig.UserData.d = true;
-     %cwl
      elseif strcmp(key,'r')
          fig.UserData.r = true;
      elseif strcmp(key,'f')
@@ -473,7 +467,6 @@ function KeyPress(varargin)
          fig.UserData.t = true;
      elseif strcmp(key,'g')
          fig.UserData.g = true;
-     %cwl
      end
 end
 
@@ -493,7 +486,6 @@ function KeyRelease(varargin)
          fig.UserData.e = false;
      elseif strcmp(key,'d')
          fig.UserData.d = false;
-     %cwl
      elseif strcmp(key,'r')
          fig.UserData.r = false;
      elseif strcmp(key,'f')
@@ -502,6 +494,5 @@ function KeyRelease(varargin)
          fig.UserData.t = false;
      elseif strcmp(key,'g')
          fig.UserData.g = false;
-     %cwl
      end
 end
