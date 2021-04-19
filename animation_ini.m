@@ -19,6 +19,7 @@ set(gcf,'Position',[60 70  1280 720]);
 light                               % add a default light
 daspect([1 1 1])                    % Setting the aspect ratio
 view(-90,90)                             % Isometric view
+% viet(3) % 三维视图
 
 xlabel('X'),ylabel('Y'),zlabel('Z')
 axis([Xmin Xmax Ymin Ymax Zmin Zmax]); % setting of the range of graph
